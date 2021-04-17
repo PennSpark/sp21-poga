@@ -3,7 +3,7 @@ export const homeObjOne = {
     lightText: true,
     lightTextDesc: true,
     topLine: 'PLANT • YOGA',
-    headline: 'Learn yogo with your new plant buddy',
+    headline: 'Learn yoga with your new plant buddy',
     description:
       'Create an account to start doing yoga poses with your customizable plant friend',
     buttonLabel: 'Get Started',

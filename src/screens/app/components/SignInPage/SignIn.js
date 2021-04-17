@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Input from "./SignInElements";
-//import { Button } from './Button';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   return (
@@ -18,6 +17,15 @@ const SignIn = () => {
         <Input type="password" placeholder="Password" />
         <button>Sign In</button>
       </Form>
+      <div>
+        <h4>
+          Don't have an account? <Link to='/sign-up'>
+                  <button>
+                    Sign Up
+                  </button>
+                </Link>
+        </h4>
+      </div>
     </Container>
   );
 };
@@ -74,8 +82,9 @@ const LogoWrapper = styled.div`
 
   span {
     color: #724cf9;
-    font-weight: 300;
-    font-size: 18px;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Advent Pro', sans-serif;
   }
 `;
 
