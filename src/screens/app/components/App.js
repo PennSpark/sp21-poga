@@ -5,47 +5,51 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
 import Profile from './Profile'
+import './App.css';
+import './HeroSection.css'
+import { Button } from "./Button";
+import Navbar from './Navbar.js';
+import Home from './HomePage/Home';
+import SignUp from './SignUpPage/SignUp';
+import SignIn from './SignInPage/SignIn';
 
 export default function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/leaderboard">Leaderboard</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/leaderboard">
-            <Leaderboard />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+      <Navbar/>
+      <Switch>
+        <Route path='/' exact component={Home}/>
+        <Route path='/leaderboard' exact component={Leaderboard}/>
+        <Route path='/profile' exact component={Profile}/>
+        <Route path='/sign-up' exact component={SignUp}/>
+        <Route path='/sign-in' exact component={SignIn}/>
+      </Switch>
     </Router>
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
+// function Home() {
+//   return (
+//     <div className='home-container'>
+//       <h1>Start Your Yoga Adventure Here!</h1>
+//       <p>Here @ Poga, you'll be learning yoga with your customizable plant buddy! 
+//         You'll be able to level up your profile, compete with real life friends, 
+//         and grow spiritually with your cool litle plant buddy!</p>
+//       <div className='home-btns'>
+//         <Button className='btns' buttonStyle='btn--outline'
+//          buttonSize='btn--large'>
+//            Create Profile
+//         </Button>
+//         <Button className='btns' buttonStyle='btn--primary'
+//          buttonSize='btn--large'>
+//            Log In
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// }
 
 // function Profile() {
 //   return <h2>Profile</h2>;
