@@ -30,31 +30,6 @@ export default function App() {
   );
 }
 
-// function Home() {
-//   return (
-//     <div className='home-container'>
-//       <h1>Start Your Yoga Adventure Here!</h1>
-//       <p>Here @ Poga, you'll be learning yoga with your customizable plant buddy! 
-//         You'll be able to level up your profile, compete with real life friends, 
-//         and grow spiritually with your cool litle plant buddy!</p>
-//       <div className='home-btns'>
-//         <Button className='btns' buttonStyle='btn--outline'
-//          buttonSize='btn--large'>
-//            Create Profile
-//         </Button>
-//         <Button className='btns' buttonStyle='btn--primary'
-//          buttonSize='btn--large'>
-//            Log In
-//         </Button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// function Profile() {
-//   return <h2>Profile</h2>;
-// }
-
 function Leaderboard() {
   return <h2>Leaderboard</h2>;
 }
