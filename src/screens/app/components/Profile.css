@@ -1,0 +1,53 @@
+:root { 
+  /* ----- colors ----- */
+
+  --content-background: #fff;
+  --content-heading: #000000;
+  --content-text: #3b3b3b;
+  --accent: rgb(101, 175, 209);
+  --purple: #724CF9;
+  --purple-dark: #564592;
+  --pink: #F896D8;
+  --yellow: #EDF67D;
+  --green-light: #a1b071;
+  --green-dark: #6c7c4a;
+
+}
+
+#profile {
+  grid-template-columns: auto auto;
+  margin: 1% 10%;
+
+}
+
+
+.icon {
+  background: linear-gradient(to bottom right, var(--purple), var(--yellow));
+  border-radius: 50%;
+  padding: 5px;
+  display: inline-block;
+}
+
+.icon img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  padding: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #f5f6ff;
+} 
+
+.name {
+  padding: 0px;
+  margin: 10px;
+  font-size: xx-large;
+  color: var(--content-heading);
+  font-family: 'Advent Pro', sans-serif;
+}
+
+.detail_text {
+  padding: 0px;
+  margin: 10px;
+  color: var(--content-text);
+}

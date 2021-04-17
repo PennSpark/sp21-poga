@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Profile from './Profile'
 
 export default function App() {
   return (
@@ -46,9 +47,9 @@ function Home() {
   return <h2>Home</h2>;
 }
 
-function Profile() {
-  return <h2>Profile</h2>;
-}
+// function Profile() {
+//   return <h2>Profile</h2>;
+// }
 
 function Leaderboard() {
   return <h2>Leaderboard</h2>;
