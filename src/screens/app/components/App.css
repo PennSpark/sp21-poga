@@ -28,6 +28,29 @@
   color: #61dafb;
 }
 
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(30, 205, 23);
+  color: brown;
+}
+
+.nav-links {
+   width: 130%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   list-style: none;
+}
+
+Container {
+  height: 60px;
+  background-color: chartreuse;
+  display: flex;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
