@@ -5,6 +5,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button } from './Button';
 import './Navbar.css';
 import { IconContext } from 'react-icons/lib';
+import logo from './pogalogo.png';
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -29,8 +30,9 @@ function Navbar() {
             <nav className='navbar'>
               <div className='navbar-container container'>
                 <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-                  <RiPlantLine className='navbar-icon' />
-                  POGA
+                  {/* <RiPlantLine className='navbar-icon' /> */}
+                  <img className="navbar-image" src={logo} alt="Logo"/>
+                  poga
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>
                   {click ? <FaTimes /> : <FaBars />}

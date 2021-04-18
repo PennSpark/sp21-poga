@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Input from "./SignUpElements";
-//import { Button } from './Button';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
@@ -9,7 +8,7 @@ const SignUp = () => {
     <Container>
       <LogoWrapper>
         <h3>
-          Start your <span>POGA</span> journey
+          Start your <span>poga</span> journey
         </h3>
       </LogoWrapper>
       <Form>
@@ -85,8 +84,9 @@ const LogoWrapper = styled.div`
 
   span {
     color: #724cf9;
-    font-weight: 300;
-    font-size: 18px;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Advent Pro', sans-serif;
   }
 `;
 
