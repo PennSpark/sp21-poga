@@ -14,6 +14,7 @@ import Navbar from './Navbar.js';
 import Home from './HomePage/Home';
 import SignUp from './SignUpPage/SignUp';
 import SignIn from './SignInPage/SignIn';
+import TFPage from './TFPage/TF';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path='/profile' exact component={Profile}/>
         <Route path='/sign-up' exact component={SignUp}/>
         <Route path='/sign-in' exact component={SignIn}/>
+        <Route path='/tf-page' exact component={TFPage}/>
       </Switch>
     </Router>
   );
