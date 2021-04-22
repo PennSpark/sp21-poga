@@ -6,6 +6,27 @@ import Webcam from "react-webcam";
 //import * as ml5 from 'ml5';
 import {drawKeypoints, drawSkeleton} from "./utilities";
 
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import Grid from '@material-ui/core/Grid';
+
+
+const renderTime = ({ remainingTime }) => {
+    if (remainingTime === 0) {
+      return <div className="timer">You did it!</div>;
+    }
+
+    //user can select session length and then there is countdown timer?
+    return (
+      <div className="timer"> 
+        <div className="value">{Math.trunc(remainingTime / 60)}</div>
+        <div className="text">minutes</div>
+        <div className="value">{remainingTime % 60}</div>
+        <div className="text">seconds</div>
+      </div>
+    );
+  };
+  
+
 function TF() {
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
@@ -50,32 +71,50 @@ function TF() {
 
     return (
         <div className="TF">
-            <Webcam 
-                ref={webcamRef}
-                style={{
-                  position: "absolute", 
-                  marginLeft:"auto", 
-                  marginRight:"auto", 
-                  left:0, 
-                  right:0, 
-                  textAlign:"center", 
-                  zIndex:9, 
-                  width:640, 
-                  height:480}} 
-            />
-            <canvas 
-                ref={canvasRef}
-                style= {{
-                  position: "absolute", 
-                  marginLeft:"auto", 
-                  marginRight:"auto", 
-                  left:0, 
-                  right:0, 
-                  textAlign:"center", 
-                  zIndex:9, 
-                  width:640, 
-                  height:480}} 
-            />
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
+                    <div className="timer-wrapper">
+                        <CountdownCircleTimer
+                        isPlaying
+                        duration={65}
+                        isLinearGradient={true}
+                        colors={[["#ca7df9", 0.4], ["#f896d8", 0.6]]}
+                        onComplete={() => [true, 1000]}
+                        >
+                        {renderTime}
+                        </CountdownCircleTimer>
+                    </div>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <Webcam 
+                        ref={webcamRef}
+                        style={{
+                        position: "absolute", 
+                        marginLeft:"auto", 
+                        marginRight:"auto", 
+                        left:0, 
+                        right:0, 
+                        textAlign:"center", 
+                        zIndex:9, 
+                        width:640, 
+                        height:480}} 
+                    />
+                    <canvas 
+                        ref={canvasRef}
+                        style= {{
+                        position: "absolute", 
+                        marginLeft:"auto", 
+                        marginRight:"auto", 
+                        left:0, 
+                        right:0, 
+                        textAlign:"center", 
+                        zIndex:9, 
+                        width:640, 
+                        height:480}} 
+                    /> 
+                </Grid>
+            </Grid>
+            
         </div>
     )
 }
