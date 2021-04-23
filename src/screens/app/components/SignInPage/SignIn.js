@@ -19,7 +19,7 @@ const SignIn = () => {
       </Form>
       <div>
         <h4>
-          Don't have an account? <Link to='/sign-up'>
+          Don't have an account? <Link to='/tf-page'>
                   <button>
                     Sign Up
                   </button>

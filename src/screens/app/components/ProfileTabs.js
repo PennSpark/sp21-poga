@@ -63,8 +63,8 @@ export default function ProfileTabs() {
   };
 
   return (
-    <Paper className={classes.root}>
-      <AppBar position="static" color="default">
+    <Paper className={classes.root} variant="outlined">
+      <AppBar position="static" color="default" variant="outlined">
         <Tabs
           value={value}
           onChange={handleChange}
