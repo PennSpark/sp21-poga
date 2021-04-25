@@ -1,35 +1,63 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Input from "./SignUpElements";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import firebase from "firebase/app";
+import "firebase/auth";
+import config from "./config";
+import { FirebaseAuthProvider } from "@react-firebase/auth";
 
-const SignUp = () => {
-  return (
-    <Container>
-      <LogoWrapper>
-        <h3>
-          Start your <span>poga</span> journey
-        </h3>
-      </LogoWrapper>
-      <Form>
-        <h3>Sign Up</h3>
-        <Input placeholder="Full Name" />
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Input type="password" placeholder="Confrim Password" />
-        <button>Sign Up</button>
-      </Form>
-      <div>
-        <h4>
-          Already have an account? <Link to='/sign-in'>
-                  <button>
-                    Sign In
-                  </button>
-                </Link>
-        </h4>
-      </div>
-    </Container>
-  );
+
+
+  const SignUp = () => {
+    const history = useHistory();
+    const onSubmit = () => {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+    var token = result.credential.accessToken;
+    var user = result.user;
+    
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        history.push("/");
+      } 
+    });
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
+
+
+    return (
+      <Container>
+        <LogoWrapper>
+          <h3>
+            Start your <span>poga</span> journey
+          </h3>
+        </LogoWrapper>
+        <Form>
+          <h3>Sign Up</h3>
+          <Input placeholder="Full Name" />
+          <Input type="email" placeholder="Email" />
+          <Input type="password" placeholder="Password" />
+          <Input type="password" placeholder="Confrim Password" />
+          <button>Sign Up</button>
+        </Form>
+        <div>
+          <h4>
+            Already have an account? <Link to='/sign-in'>
+                    <button>
+                      Sign In
+                    </button>
+                  </Link>
+          </h4>
+          <FirebaseAuthProvider {...config} firebase={firebase}>
+          <button onClick={() => onSubmit()}>Sign in with Google</button>
+          </FirebaseAuthProvider>
+        </div>
+      </Container>
+    );
 };
 
 const Terms = styled.p`

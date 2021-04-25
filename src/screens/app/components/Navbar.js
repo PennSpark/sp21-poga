@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button } from './Button';
 import './Navbar.css';
 import { IconContext } from 'react-icons/lib';
+
+import firebase from "firebase/app";
+import "firebase/auth";
+import config from "./SignUpPage/config";
+import { IfFirebaseAuthed, IfFirebaseUnAuthed, FirebaseAuthProvider } from "@react-firebase/auth";
+
 import logo from './pogalogo.png';
 
 function Navbar() {
@@ -24,8 +30,22 @@ function Navbar() {
 
       window.addEventListener('resize', showButton);
 
+      const history = useHistory();
+      const onLogout = () => {
+        firebase.auth().signOut().then(function() {
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+              history.push("/sign-up");
+            }
+          });
+        }).catch(function(error) {
+          console.log(error);
+        });
+      }
+
       return (
         <>
+        <FirebaseAuthProvider {...config} firebase={firebase}>
           <IconContext.Provider value={{ color: '#ca7df9' }}>
             <nav className='navbar'>
               <div className='navbar-container container'>
@@ -62,6 +82,9 @@ function Navbar() {
                     </Link>
                   </li>
                   <li className='nav-btn'>
+                    
+
+                  <IfFirebaseUnAuthed>
                     {button ? (
                       <Link to='/sign-up' className='btn-link'>
                         <Button buttonStyle='btn--outline'>GET STARTED</Button>
@@ -76,12 +99,34 @@ function Navbar() {
                           GET STARTED
                         </Button>
                       </Link>
+                    
                     )}
+                    </IfFirebaseUnAuthed>
+                    <IfFirebaseAuthed>
+                    {button ? (
+                      <div className='btn-link'>
+                        <Button buttonStyle='btn--outline' onClick={() => onLogout()}> Sign out</Button>
+                      </div>
+                    ) : (
+                      <div className='btn-link'>
+                        <Button
+                          buttonStyle='btn--outline'
+                          buttonSize='btn--mobile'
+                          onClick={() => onLogout()}
+                        >
+                          Sign out
+                        </Button>
+                        </div>
+                    )}
+                    </IfFirebaseAuthed>
+
+                   
                   </li>
                 </ul>
               </div>
             </nav>
             </IconContext.Provider>
+            </FirebaseAuthProvider>
         </>
       );
     }
