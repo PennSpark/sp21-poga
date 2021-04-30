@@ -6,7 +6,7 @@ import {
   Link
 } from "react-router-dom";
 
-import Profile from './Profile'
+import Profile from './ProfilePage/Profile.js'
 import './App.css';
 import './HeroSection.css'
 import { Button } from "./Button";
