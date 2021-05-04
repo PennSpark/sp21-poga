@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import './Profile.css'
+import React from "react";
+import '../../style/Profile.css'
 
 import {
   Chart,
   BarSeries,
-  Title,
   ArgumentAxis,
   ValueAxis,
 } from '@devexpress/dx-react-chart-material-ui';

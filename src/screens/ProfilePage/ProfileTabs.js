@@ -7,11 +7,9 @@ import StarIcon from '@material-ui/icons/Star';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import EcoIcon from '@material-ui/icons/Eco';
 import SwipeableViews from 'react-swipeable-views';
-
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
-
 import ImageTable from './ImageTable'
 
 function TabPanel(props) {

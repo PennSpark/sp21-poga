@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import './Profile.css'
-
+import React from "react";
+import '../../style/Profile.css'
 import { withStyles } from '@material-ui/core/styles';
-
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';

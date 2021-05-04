@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import './Profile.css'
+import React from "react";
+import '../../style/Profile.css'
 import ProfileTabs from './ProfileTabs'
 import ProfileProgressBar from './ProfileProgressBar'
 import StatsChart from './StatsChart'
@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 
-import plant_animation from './plant.gif'; //TODO: DEF not right, but idk why i can't access when i put in images folder
+import plant_animation from '../../images/plant.gif'; //TODO: DEF not right, but idk why i can't access when i put in images folder
 
 const useStyles = makeStyles((theme) => ({
   root: {

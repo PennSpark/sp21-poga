@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { RiPlantLine } from 'react-icons/ri';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button } from './Button';
-import './Navbar.css';
+import '../style/Navbar.css';
 import { IconContext } from 'react-icons/lib';
-
 import firebase from "firebase/app";
 import "firebase/auth";
-import config from "./SignUpPage/config";
+import config from "../screens/SignUpPage/config";
 import { IfFirebaseAuthed, IfFirebaseUnAuthed, FirebaseAuthProvider } from "@react-firebase/auth";
-
-import logo from './pogalogo.png';
+import logo from '../images/pogalogo.png';
 
 function Navbar() {
     const [click, setClick] = useState(false);

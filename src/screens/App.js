@@ -3,19 +3,17 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
-import Profile from './Profile'
-import './App.css';
-import './HeroSection.css'
-import { Button } from "./Button";
-import Navbar from './Navbar.js';
+import '../style/App.css';
+import '../style/HeroSection.css'
+import Navbar from '../components/Navbar';
 import Home from './HomePage/Home';
+import Leaderboard from './LeaderboardPage/Leaderboard';
 import SignUp from './SignUpPage/SignUp';
 import SignIn from './SignInPage/SignIn';
 import TFPage from './TFPage/TF';
-import Leaderboard from './LeaderboardPage/Leaderboard'
+import Profile from './ProfilePage/Profile';
 
 export default function App() {
   return (
@@ -24,10 +22,10 @@ export default function App() {
       <Switch>
         <Route path='/' exact component={Home}/>
         <Route path='/leaderboard' exact component={Leaderboard}/>
-        <Route path='/profile' exact component={Profile}/>
         <Route path='/sign-up' exact component={SignUp}/>
         <Route path='/sign-in' exact component={SignIn}/>
         <Route path='/tf-page' exact component={TFPage}/>
+        <Route path='/profile' exact component={Profile}/>
       </Switch>
     </Router>
   );

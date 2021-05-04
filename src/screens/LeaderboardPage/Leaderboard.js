@@ -1,5 +1,5 @@
 import React from "react";
-import './Leaderboard.css';
+import '../../style/Leaderboard.css';
 
 const exampleData = [
   { id: 1, name: "jim", score: 50.00 },
