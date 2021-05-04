@@ -15,6 +15,7 @@ import Home from './HomePage/Home';
 import SignUp from './SignUpPage/SignUp';
 import SignIn from './SignInPage/SignIn';
 import TFPage from './TFPage/TF';
+import Leaderboard from './LeaderboardPage/Leaderboard'
 
 export default function App() {
   return (
@@ -32,6 +33,3 @@ export default function App() {
   );
 }
 
-function Leaderboard() {
-  return <h2>Leaderboard</h2>;
-}
