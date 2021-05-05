@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 
-import plant_animation from '../../images/plant.gif'; //TODO: DEF not right, but idk why i can't access when i put in images folder
+import Animation from './Animation'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,9 +69,7 @@ export default function Profile() {
           <Card className={classes.card} variant="outlined">
             <Grid container spacing={10}>
               <Grid item xs={3}>
-                <div id="plant_animation">
-                  <img src={plant_animation} alt="animation" width="140" height="190"/>
-                </div>
+                <Animation />
               </Grid>
               <Grid item xs={9} id="profile_stats">
                   <p>Earn {100 - currentPoints} more points to grow your plant to the next level!</p>
