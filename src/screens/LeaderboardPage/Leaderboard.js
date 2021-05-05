@@ -11,33 +11,31 @@ const exampleData = [
 
 function Leaderboard() {
   exampleData.sort((a, b) => b.score - a.score)
-
   return (
-    <div id="container">
-      <div id="board-title">
-        <h1>Welcome, User</h1>
+    <>
+      <div id="container">
+        <div id="board-title">
+          <h1 id="welcome-user">Welcome, User</h1>
+        </div>
+        <div id="table-container">
+          <table id="table">
+            <tr id="header-row">
+              <th id="ranking-col"> Ranking</th>
+              <th id="name-col"> Name </th>
+              <th id="score-col"> Score </th>
+            </tr>
+            {exampleData.map((item, index) => (
+                <tr className="data-row">
+                  <td className="ranking"> {index + 1} </td>
+                  <td className="user-name"> {item.name} </td>
+                  <td className="score"> {item.score} </td>
+                </tr>
+              )
+            )}
+          </table>
+        </div>
       </div>
-      <div id="table">
-        <table>
-          <tr id="header-row">
-            <th> Name </th>
-            <th> Ranking</th>
-            <th> Score </th>
-          </tr>
-          {exampleData.map((item, index) => (
-              <tr className="data-row">
-                <td className="user-name"> {item.name} </td>
-                <td className="ranking"> {index} </td>
-                <td className="score"> {item.score} </td>
-              </tr>
-            )
-          )}
-          <tr>
-          </tr>
-
-        </table>
-      </div>
-    </div>
+    </>
   );
 }
 

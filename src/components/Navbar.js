@@ -13,7 +13,6 @@ import logo from '../images/pogalogo.png';
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
-
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
@@ -58,6 +57,15 @@ function Navbar() {
                   <li className='nav-item'>
                     <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                       Home
+                    </Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link
+                      to='/tf-page'
+                      className='nav-links'
+                      onClick={closeMobileMenu}
+                    >
+                      Start a Session
                     </Link>
                   </li>
                   <li className='nav-item'>

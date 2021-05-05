@@ -1,3 +1,14 @@
+html {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.entire-app {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
 .App {
   text-align: center;
 }
@@ -49,6 +60,7 @@ Container {
   height: 60px;
   background-color: chartreuse;
   display: flex;
+  
 }
 
 @keyframes App-logo-spin {
