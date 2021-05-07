@@ -1,8 +1,24 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Webcam from 'react-webcam';
 import * as ml5 from 'ml5';
 //import { baseUrl } from '../shared/baseUrl';
 import './TF.css';
+import firebase from "firebase/app";
+import "firebase/auth";
+import config from '../SignUpPage/config';
+import { IfFirebaseAuthed, IfFirebaseUnAuthed, FirebaseAuthProvider } from "@react-firebase/auth";
+
+const db = firebase.database;
+
+   // ---------Set the score of the user---------
+        // var user = firebase.auth().currentUser;
+        // if (user != null) {
+        //   var uid = user.uid;
+        //   var db = firebase.firestore();
+        //   db.collection("user").doc(uid).update({
+        //     score: current score int value here
+        // });
+        // }
 
 function TF({
 	Setmodelloading,
