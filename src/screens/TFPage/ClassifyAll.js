@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Clock from './Clock';
+import { Button } from '../../components/Button';
 import TF from './TF';
 import './ClassifyAll.css';
 
@@ -42,11 +43,13 @@ function ClassifyAll({ type, level }) {
   const Startbutton = () => {
     if (!starting && !classifying && !completed) {
       return (
-        <div
-          className='text-secondary-dark text-2xl text-jost bg-secondary px-4 py-2 rounded-full shadow-xl transition ease-in-out duration-150 hover:bg-secondary-dark hover:text-secondary cursor-pointer'
+        <div className='startBtn'>
+          <Button
+          buttonStyle='btn--outline'
           onClick={() => Setstarting(true)}
-        >
+          >
           START
+          </Button>
         </div>
       );
     } else if (starting && !classifying && !completed) {
@@ -60,17 +63,21 @@ function ClassifyAll({ type, level }) {
       );
     } else if (starting && classifying && !completed) {
       return (
-				<div className="flex-col justify-center ml-5">
+				<div className="clockStuff">
+          {/* <img
+            src="mountainpose.png"
+            alt="Mountain"
+                /> */}
                     <Clock total={10} pause={pause} onComplete={Finished} />
-					<span className="text-xl text-primary text-center font-bold text-jost">
-						{doingright ? "Doing Great" : "Keep Trying"}
+					<span className="clockEncouragement">
+						{doingright ? "Doing Great" : "Oh No! You're making your plant buddy sad!"}
 					</span>
 				</div>
 			);
     } else if (completed && !next) {
         return(
             <div>
-                "confetti!"
+                You did it!
             </div>
         )
     } else if (next) {
@@ -118,8 +125,8 @@ function ClassifyAll({ type, level }) {
 					/>
 				</div>
 				<div className="w-full lg:w-1/2 h-full relative  ">
-					<div className="text-2xl text-jost font-bold text-secondary-dark w-full flex justify-center ">
-						Perform same as shown below
+					<div className="instructionClock">
+						Perform {levels[0]}!
 					</div>
 					<div className="  flex justify-center items-center ">
 						<a
@@ -128,14 +135,15 @@ function ClassifyAll({ type, level }) {
 							target="_blank"
 							rel="noreferrer"
 						>
-							<img
-								src="https://img.icons8.com/doodle/32/000000/youtube-play--v2.png"
-								alt="Youtube"
-							/>
+							{/* <img
+								src="mountainpose.png"
+								alt="Mountain"
+							/> */}
 							{levels[levelis - 1]}
 						</a>
 					</div>
 					<div className="  flex justify-center items-center ">
+            
 					</div>
 
 					{starting && !completed}
