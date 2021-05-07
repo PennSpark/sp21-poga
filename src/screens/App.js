@@ -13,6 +13,7 @@ import Leaderboard from './LeaderboardPage/Leaderboard';
 import SignUp from './SignUpPage/SignUp';
 import SignIn from './SignInPage/SignIn';
 import TFPage from './TFPage/TF';
+import ClassifyAll from './TFPage/ClassifyAll';
 import Profile from './ProfilePage/Profile';
 
 export default function App() {
@@ -24,7 +25,7 @@ export default function App() {
         <Route path='/leaderboard' exact component={Leaderboard}/>
         <Route path='/sign-up' exact component={SignUp}/>
         <Route path='/sign-in' exact component={SignIn}/>
-        <Route path='/tf-page' exact component={TFPage}/>
+        <Route path='/tf-page' exact component={ClassifyAll}/>
         <Route path='/profile' exact component={Profile}/>
       </Switch>
     </Router>

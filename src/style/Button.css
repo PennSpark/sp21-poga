@@ -29,11 +29,13 @@
   .btn--medium {
     padding: 8px 20px;
     font-size: 18px;
+    transition: all 0.3s ease-in-out;
   }
   
   .btn--large {
     padding: 12px 26px;
     font-size: 20px;
+    transition: all 0.3s ease-in-out;
   }
   
   .btn--mobile {
@@ -52,12 +54,13 @@
   .btn--wide {
     padding: 12px 64px;
     font-size: 20px;
+    transition: all 0.3s ease-in-out;
   }
   
   .btn--large:hover,
   .btn--medium:hover,
   .btn--mobile:hover {
-    transition: all 0.3s ease-out;
+    transition: all 0.3s ease-in-out;
     background: #ca7df9;
     color: #edf67c;
   }
@@ -65,7 +68,7 @@
   .btn--wide:hover {
     color: #fff;
     background-color: #f00946;
-    transition: all 0.2s ease-out;
+    transition: all 0.3s ease-in-out;
   }
   
   .btn-link {

@@ -1,14 +1,8 @@
-import React, { useRef } from 'react';
-import "./TF.css";
-import * as tf from "@tensorflow/tfjs";
-import * as posenet from "@tensorflow-models/posenet";
-import Webcam from "react-webcam";
-//import * as ml5 from 'ml5';
-import {drawKeypoints, drawSkeleton} from "./utilities";
-
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import Grid from '@material-ui/core/Grid';
-
+import React, { useEffect, useRef } from 'react';
+import Webcam from 'react-webcam';
+import * as ml5 from 'ml5';
+//import { baseUrl } from '../shared/baseUrl';
+import './TF.css';
 import firebase from "firebase/app";
 import "firebase/auth";
 import config from '../SignUpPage/config';
@@ -16,26 +10,6 @@ import { IfFirebaseAuthed, IfFirebaseUnAuthed, FirebaseAuthProvider } from "@rea
 
 const db = firebase.database;
 
-const renderTime = ({ remainingTime }) => {
-    if (remainingTime === 0) {
-      return <div className="timer">You did it!</div>;
-    }
-
-    //user can select session length and then there is countdown timer?
-    return (
-      <div className="timer"> 
-        <div className="value">{Math.trunc(remainingTime / 60)}</div>
-        <div className="text">minutes</div>
-        <div className="value">{remainingTime % 60}</div>
-        <div className="text">seconds</div>
-      </div>
-    );
-  };
-  
-
-function TF() {
-
-        // ---------Set the score of the user---------
         // var user = firebase.auth().currentUser;
         // if (user != null) {
         //   var uid = user.uid;
@@ -44,99 +18,162 @@ function TF() {
         //     score: current score int value here
         // });
         // }
+function TF({
+	Setmodelloading,
+	Setdoingright,
+	Classifying,
+	whatdoing,
+    asana
+}) {
+	const webcamRef = useRef(null);
+	const canvasRef = useRef(null);
+	const poseNet = useRef(null);
+	const brain = useRef(null);
 
+	const options = {
+		inputs: 34,
+		outputs: ["label"],
+		task: "classification",
+		debug: true,
+	};
 
+	const modelInfo = {
+		model: 'model.json',
+		metadata: 'modelmeta.json',
+		weights: 'modelweight.bin',
+	};
 
-    const webcamRef = useRef(null);
-    const canvasRef = useRef(null);
+	const detect = () => {
+		poseNet.current = ml5.poseNet(webcamRef.current.video, () => {
+			console.log("Model Loaded");
+			brain.current.load(modelInfo, () => {
+				console.log("pose classification ready!");
+			});
+            console.log(brain.current);
 
-    const runPosenet = async () => {
-        const net = await posenet.load({
-            inputResolution:{width:640, height:480},
-            scale:0.5
-        });
+			const videoWidth = webcamRef.current.video.videoWidth;
+			const videoHeight = webcamRef.current.video.videoHeight;
 
-        setInterval(() => {
-            detect(net);
-        }, 100);
-    }
-
-    const detect = async (net) => {
-        if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState===4) {
-            const video = webcamRef.current.video;
-            const videoWidth = webcamRef.current.video.videoWidth;
-            const videoHeight = webcamRef.current.video.videoHeight;
-
-            webcamRef.current.video.width = videoWidth; 
-            webcamRef.current.video.height = videoHeight;
-
-            const pose = await net.estimateSinglePose(video);
-            console.log(pose);
-
-            drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
-        }
-    };
-
-    const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
-        const ctx = canvas.current.getContext("2d");
-        canvas.current.width = videoWidth;
-        canvas.current.height = videoHeight;
-      
-        drawKeypoints(pose["keypoints"], 0.5, ctx);
-        drawSkeleton(pose["keypoints"], 0.5, ctx);
-      };
-
-      runPosenet();
-
-    return (
-        <div className="TF">
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
-                    <div className="timer-wrapper">
-                        <CountdownCircleTimer
-                        isPlaying
-                        duration={65}
-                        isLinearGradient={true}
-                        colors={[["#ca7df9", 0.4], ["#f896d8", 0.6]]}
-                        onComplete={() => [true, 1000]}
-                        >
-                        {renderTime}
-                        </CountdownCircleTimer>
-                    </div>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Webcam 
-                        ref={webcamRef}
-                        style={{
-                        position: "absolute", 
-                        marginLeft:"auto", 
-                        marginRight:"auto", 
-                        left:0, 
-                        right:0, 
-                        textAlign:"center", 
-                        zIndex:9, 
-                        width:640, 
-                        height:480}} 
-                    />
-                    <canvas 
-                        ref={canvasRef}
-                        style= {{
-                        position: "absolute", 
-                        marginLeft:"auto", 
-                        marginRight:"auto", 
-                        left:0, 
-                        right:0, 
-                        textAlign:"center", 
-                        zIndex:9, 
-                        width:640, 
-                        height:480}} 
-                    /> 
-                </Grid>
-            </Grid>
-            
-        </div>
-    )
+			// Set video width
+			webcamRef.current.video.width = videoWidth;
+			webcamRef.current.video.height = videoHeight;
+			canvasRef.current.width = videoWidth;
+			canvasRef.current.height = videoHeight;
+			poseNet.current.on("pose", (poses) => {
+				if (poses.length > 0) {
+					if (Classifying()) classifyPose(poses[0].pose);
+					if (canvasRef.current) {
+						const ctx = canvasRef.current.getContext("2d");
+						ctx.clearRect(
+							0,
+							0,
+							canvasRef.current.width,
+							canvasRef.current.height
+						);
+						requestAnimationFrame(() => {
+							drawRect(poses, ctx);
+						});
+					}
+				}
+			});
+		});
+	};
+    const classifyPose = (pose) => {
+		let inputs = [];
+		for (let i = 0; i < pose.keypoints.length; i++) {
+			let x = pose.keypoints[i].position.x;
+			let y = pose.keypoints[i].position.y;
+			inputs.push(x);
+			inputs.push(y);
+		}
+		brain.current.classify(inputs, (error, results) => {
+			console.log(results[0].confidence)
+            console.log(results[0].label)
+			if (error) {
+				console.log(error);
+				if (whatdoing()) Setdoingright(false);
+			} else if (results[0].label === asana && results[0].confidence > 0.8) {
+				if (!whatdoing()) Setdoingright(true);
+				
+			} else {
+				if (whatdoing) Setdoingright(false);
+			}
+		});
+	};
+		useEffect(() => {
+			brain.current = ml5.neuralNetwork(options);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, []);
+	useEffect(() => {
+		detect();
+		return () => {
+			poseNet.current.removeListener("pose", (err) => {
+				console.log("Removed");
+			});
+		};
+	
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [Classifying()]);
+	return (
+		<>
+			<div className="">
+				<div className="relative">
+					<Webcam ref={webcamRef} muted={true} className="webcam" 
+          style= {{
+            position: "absolute", 
+            marginLeft:"auto", 
+            marginRight:"auto", 
+            left:0, 
+            right:0, 
+            down: 300,
+            textAlign:"center", 
+            zIndex:9, 
+            width:640, 
+            height:480}} />
+					<canvas ref={canvasRef} className="canvas" 
+          style= {{
+            position: "absolute", 
+            marginLeft:"auto", 
+            marginRight:"auto", 
+            left:0, 
+            right:0, 
+            textAlign:"center", 
+            zIndex:9, 
+            width:640, 
+            height:480}}/>
+				</div>
+			</div>
+		</>
+	);
 }
 
-export default TF
+const drawRect = (poses, ctx) => {
+  // ctx.drawImage(webcamRef.current.video, 0, 0);
+  const pose = poses[0].pose;
+  const skeleton = poses[0].skeleton;
+  for (let i = 0; i < pose.keypoints.length; i++) {
+    let x = pose.keypoints[i].position.x;
+    let y = pose.keypoints[i].position.y;
+    ctx.fillStyle = '#ca7df9';
+    ctx.beginPath();
+    ctx.arc(x, y, 6, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.fillStyle = '#ca7df9';
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, 2 * Math.PI);
+    ctx.fill();
+  }
+  for (let j = 0; j < poses[0].skeleton.length; j++) {
+    let partA = skeleton[j][0];
+    let partB = skeleton[j][1];
+    ctx.beginPath();
+    ctx.moveTo(partA.position.x, partA.position.y);
+    ctx.lineTo(partB.position.x, partB.position.y);
+    ctx.strokeStyle = '#ca7df9';
 
+    ctx.stroke();
+  }
+  // ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+};
+
+export default TF;
