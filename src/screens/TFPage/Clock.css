@@ -1,8 +1,9 @@
 /* Sets the containers height and width */
 .base-timer {
     position: relative;
-    height: 100px;
-    width: 100px;
+    height: 350px;
+    width: 350px;
+    transform: translateX(30px);
   }
   
   /* Removes SVG styling that would hide the time label */
@@ -14,14 +15,14 @@
   /* The SVG path that displays the timer's progress */
   .base-timer__path-elapsed {
     stroke-width: 7px;
-    stroke: grey;
+    stroke: #edf67c;
   }
   .base-timer__label {
     position: absolute;
     
     /* Size should match the parent container */
-    width: 100px;
-    height: 100px;
+    width: 350px;
+    height: 350px;
     
     /* Keep the label aligned to the top */
     top: 0;
@@ -32,7 +33,7 @@
     justify-content: center;
   
     /* Sort of an arbitrary number; adjust to your liking */
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
     
   }
@@ -51,7 +52,7 @@
     transition: 1s linear all;
   
     /* Allows the ring to change color when the color value updates */
-    stroke: #424874;
+    stroke: #ca7df9;
   }
   
   .base-timer__svg {

@@ -2,6 +2,38 @@
     height: 300px;
     width: 150px;
 }
+
+.mountainImg{
+    height: 300px;
+    width: 150px;
+}
+
+.startBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    transform: translateY(450px);
+}
+
+.instructionClock{
+    font-size: 1.3rem;
+    color: #724cf9;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: bold;
+    transform: translateX(110px);
+}
+
+span.clockEncouragement{
+    font-size: 1.3rem;
+    color: #724cf9;
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: bold;
+    position: relative;
+    right: -20px;
+}
+
 @media (max-width: 768px){
     .keep_img{
         height: 300px;
