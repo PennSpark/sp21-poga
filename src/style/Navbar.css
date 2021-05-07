@@ -27,20 +27,22 @@
 }
 
 .navbar-logo {
-  color: rgba(86,69,146,255);
+  color: #564592;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-family: 'Advent Pro', sans-serif;
-  font-weight: bold;
   display: flex;
   align-items: center;
+  font-style: normal;
+  font-weight: 1000;
+  font-style: normal;
 }
 
 .navbar-image {
-  width: 70px;
-  height: 60px;
+  width: 97px;
+  height: 80px;
 }
 
 .navbar-icon {
