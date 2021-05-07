@@ -9,6 +9,12 @@ import {drawKeypoints, drawSkeleton} from "./utilities";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Grid from '@material-ui/core/Grid';
 
+import firebase from "firebase/app";
+import "firebase/auth";
+import config from '../SignUpPage/config';
+import { IfFirebaseAuthed, IfFirebaseUnAuthed, FirebaseAuthProvider } from "@react-firebase/auth";
+
+const db = firebase.database;
 
 const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
@@ -28,6 +34,19 @@ const renderTime = ({ remainingTime }) => {
   
 
 function TF() {
+
+        // ---------Set the score of the user---------
+        // var user = firebase.auth().currentUser;
+        // if (user != null) {
+        //   var uid = user.uid;
+        //   var db = firebase.firestore();
+        //   db.collection("user").doc(uid).update({
+        //     score: current score int value here
+        // });
+        // }
+
+
+
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
 
