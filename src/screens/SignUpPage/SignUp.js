@@ -12,21 +12,34 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
   const SignUp = () => {
     const history = useHistory();
     const onSubmit = () => {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-    var token = result.credential.accessToken;
-    var user = result.user;
-    
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        history.push("/");
-      } 
-    });
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-}
+      var db = firebase.firestore();
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+      var token = result.credential.accessToken;
+      var user = result.user;
+      
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          history.push("/");
+          const usersRef = db.collection('user').doc(user.uid)
+          usersRef.get()
+            .then((docSnapshot) => {
+              if (!docSnapshot.exists) {
+                db.collection("user").doc(user.uid).set({
+                  name: user.displayName,
+                  email: user.email,
+                  bio: "Add a bio",
+                  score: 0,
+              })
+              } 
+          });
+        } 
+      });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
 
 
     return (

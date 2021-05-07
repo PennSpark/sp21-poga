@@ -10,7 +10,6 @@ import { IfFirebaseAuthed, IfFirebaseUnAuthed, FirebaseAuthProvider } from "@rea
 
 const db = firebase.database;
 
-   // ---------Set the score of the user---------
         // var user = firebase.auth().currentUser;
         // if (user != null) {
         //   var uid = user.uid;
@@ -19,7 +18,6 @@ const db = firebase.database;
         //     score: current score int value here
         // });
         // }
-
 function TF({
 	Setmodelloading,
 	Setdoingright,

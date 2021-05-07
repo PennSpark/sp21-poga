@@ -59,6 +59,8 @@ function Navbar() {
                       Home
                     </Link>
                   </li>
+                  
+                  <IfFirebaseAuthed>
                   <li className='nav-item'>
                     <Link
                       to='/tf-page'
@@ -68,6 +70,8 @@ function Navbar() {
                       Start a Session
                     </Link>
                   </li>
+                  </IfFirebaseAuthed>
+
                   <li className='nav-item'>
                     <Link
                       to='/leaderboard'
