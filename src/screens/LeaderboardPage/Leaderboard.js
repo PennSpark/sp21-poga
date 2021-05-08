@@ -13,8 +13,12 @@ const exampleData = [
   { id: 3, picture: defaultProfile, name: "patrick", score: 25.00 }
 ]
 
-
 function Leaderboard() {
+  var curUser = firebase.auth().currentUser;
+  var name;
+  if (curUser != null) {
+    name = curUser.displayName;
+  }
   var realData = [];
   var db = firebase.firestore();
   exampleData.sort((a, b) => b.score - a.score);
@@ -37,7 +41,7 @@ function Leaderboard() {
     <>
       <div id="container">
         <div id="board-title">
-          <h1 id="welcome-user">Welcome, User</h1>
+          <h1 id="welcome-user">Welcome {name}</h1>
         </div>
         <div id="table-container">
           <table id="table">
