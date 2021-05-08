@@ -4,7 +4,7 @@
   height:50%;
   }
   .canvas{
-    transform: scaleX(-1) translateY(95px);
+    transform: scaleX(-1) translateY(190px);
     position: absolute;
     width: 50%;
     height:50%;
