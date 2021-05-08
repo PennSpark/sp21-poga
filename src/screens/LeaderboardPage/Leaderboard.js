@@ -41,7 +41,7 @@ function Leaderboard() {
     <>
       <div id="container">
         <div id="board-title">
-          <h1 id="welcome-user">Welcome {name}</h1>
+          <h1 id="welcome-user">Welcome, {name}</h1>
         </div>
         <div id="table-container">
           <table id="table">

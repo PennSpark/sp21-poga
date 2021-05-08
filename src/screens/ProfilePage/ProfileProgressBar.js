@@ -26,11 +26,12 @@ function LinearProgressWithLabel(props) {
         <LinearProgress variant="determinate" {...props} />
       </Box>
       <Box>
-        {Math.round(props.value)} / {(Math.floor((Math.round(props.value) / 300)) + 1) * 300} points
+        {Math.round(props.value * 3)} / {(Math.floor((Math.round(props.value) / 300)) + 1) * 300} points
       </Box>
     </Box>
   );
 }
+
 
 LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
