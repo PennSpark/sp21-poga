@@ -20,7 +20,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
       
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          history.push("/");
+          history.push("/profile");
           const usersRef = db.collection('user').doc(user.uid)
           usersRef.get()
             .then((docSnapshot) => {
@@ -28,7 +28,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
                 db.collection("user").doc(user.uid).set({
                   name: user.displayName,
                   email: user.email,
-                  bio: "Add a bio",
+                  bio: "No bio.",
                   score: 0,
               })
               } 
