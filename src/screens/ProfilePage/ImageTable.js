@@ -32,32 +32,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const tileData = [
-   {
+  {
+    img: "https://www.yogajournal.com/wp-content/uploads/2007/08/mountainhp2_292_37362_cmyk.jpg?crop=535:301&width=1070&enable=upscale",
+    title: 'Tadasana',
+    author: 'author',
+  },
+  {
      img: "https://media1.popsugar-assets.com/files/thumbor/HRIqxmAtFnIt6b4rykky1UGsBPA/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/18/908/n/1922729/4ff941bd_boat-3300-flip/i/Boat.jpg",
      title: 'Boat',
      author: 'author',
    },
    {
-    img: "https://media1.popsugar-assets.com/files/thumbor/uDOCE6FcYv8wOzCDJg4toWBcAFc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/18/908/n/1922729/25eb4948_Sage_865/i/Side-Plank.jpg",
-    title: 'Side Plank',
-    author: 'author',
-  },
-  {
-    img: "https://media1.popsugar-assets.com/files/thumbor/HRIqxmAtFnIt6b4rykky1UGsBPA/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/18/908/n/1922729/4ff941bd_boat-3300-flip/i/Boat.jpg",
-    title: 'Boat',
-    author: 'author',
-  },
-  {
-    img: "https://media1.popsugar-assets.com/files/thumbor/uDOCE6FcYv8wOzCDJg4toWBcAFc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/18/908/n/1922729/25eb4948_Sage_865/i/Side-Plank.jpg",
-    title: 'Side Plank',
-    author: 'author',
-  },
-  {
-    img: "https://media1.popsugar-assets.com/files/thumbor/HRIqxmAtFnIt6b4rykky1UGsBPA/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/18/908/n/1922729/4ff941bd_boat-3300-flip/i/Boat.jpg",
-    title: 'Boat',
-    author: 'author',
-  },
-  {
     img: "https://media1.popsugar-assets.com/files/thumbor/uDOCE6FcYv8wOzCDJg4toWBcAFc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/18/908/n/1922729/25eb4948_Sage_865/i/Side-Plank.jpg",
     title: 'Side Plank',
     author: 'author',
