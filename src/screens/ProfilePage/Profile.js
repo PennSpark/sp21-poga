@@ -136,7 +136,7 @@ export default function Profile() {
                 </Grid>
                 <Grid item xs={9} id="profile_stats">
                     <p>Earn {(Math.floor(currentPoints / 300) + 1) * 300 - currentPoints} more points to grow your plant to the next level!</p>
-                    <ProfileProgressBar variant="determinate" value={progress} />
+                    <ProfileProgressBar variant="determinate" value={progress / 3} />
                 </Grid>
               </Grid>
             </Card>
