@@ -7,9 +7,6 @@ import config from '../SignUpPage/config';
 import { IfFirebaseAuthed, IfFirebaseUnAuthed, FirebaseAuthProvider } from "@react-firebase/auth";
 import React,{useState,useEffect} from 'react';
 
-import firebase from "firebase/app";
-import "firebase/auth";
-
 const exampleData = [
   { id: 1, picture: defaultProfile, name: "jim", score: 50.00 },
   { id: 2, picture: defaultProfile, name: "charlie", score: 100 },
