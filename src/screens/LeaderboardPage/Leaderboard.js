@@ -1,11 +1,23 @@
 import React from "react";
 import '../../style/Leaderboard.css';
 
+import firebase from "firebase/app";
+import "firebase/auth";
+
 const exampleData = [
   { id: 1, name: "jim", score: 50.00 },
   { id: 2, name: "charlie", score: 100 },
   { id: 3, name: "patrick", score: 25.00 }
 ]
+
+// --------gets scpre from all documents---------
+// var db = firebase.firestore();
+// db.collection("user").get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//       var score = doc.data().score;
+//   });
+// });
+
 
 
 

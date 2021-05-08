@@ -33,6 +33,25 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Profile() {
+
+  //-------Handles user input for changing a bio------
+  // const {userBio, setUserBio} = useState();
+  // const handleBioChange = (e) => {
+  //   setUserBio(e.target.value)
+  // }
+  
+  // const onChangeBio = () => {
+  //   var user = firebase.auth().currentUser;
+  //   if (user != null) {
+  //     var uid = user.uid;
+  //     var db = firebase.firestore();
+  //     db.collection("user").doc(uid).update({
+  //       bio : userBio,
+  //   })
+  //   }
+  // }
+
+
   const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
   const [currentPoints, setcurrentPoints] = React.useState(75);
@@ -79,8 +98,6 @@ export default function Profile() {
           <Grid item xs={12} sm={6}>
             <div id="profile_picture">
               <div class="icon">
-                {/* <img src = "https://www.pngkit.com/png/full/281-2812821_user-account-management-logo-user-icon-png.png" alt = "profile picture"
-                width="170" height="170"/> */}
                 <img src = {photoUrl} alt = "profile picture"
                 width="170" height="170"/>
               </div>
@@ -90,6 +107,11 @@ export default function Profile() {
                 <small class="detail_text">{email}</small> 
                 <p class="detail_text">
                   {userDetails ? userDetails.bio : "No bio."}
+                  {/* -------INPUT and a bUTTON for BIO -------*/}
+                  {/* <form> 
+                  <input value={userBio} onChange={handleBioChange}/> 
+                  <Button buttonStyle='btn--outline' onClick={() => onChangeBio()}> Change Bio</Button>
+                  </form> */}
                 </p> 
                 <br/>
                 <br/>
