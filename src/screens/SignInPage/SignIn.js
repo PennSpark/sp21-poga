@@ -20,9 +20,9 @@ const SignIn = () => {
       <div>
         <h4>
           Don't have an account? <Link to='/tf-page'>
-                  <button>
+                  <Button>
                     Sign Up
-                  </button>
+                  </Button>
                 </Link>
         </h4>
       </div>
@@ -36,6 +36,26 @@ const Terms = styled.p`
   font-size: 10px;
   color: rgba(62, 144, 60, 0.8);
   font-weight: 300;
+`;
+
+const Button = styled.button`
+  width: 75%;
+  width: fit-content;
+  height: 25px;
+  border: none;
+  margin: 1rem 0;
+  box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  background-color: #ca7df9;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
 `;
 
 const Form = styled.form`

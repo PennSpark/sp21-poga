@@ -20,7 +20,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
       
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          history.push("/profile");
+          history.push("/");
           const usersRef = db.collection('user').doc(user.uid)
           usersRef.get()
             .then((docSnapshot) => {
@@ -28,7 +28,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
                 db.collection("user").doc(user.uid).set({
                   name: user.displayName,
                   email: user.email,
-                  bio: "No bio.",
+                  bio: "Add a bio",
                   score: 0,
               })
               } 
@@ -60,13 +60,13 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
         <div>
           <h4>
             Already have an account? <Link to='/sign-in'>
-                    <button>
+                    <Button>
                       Sign In
-                    </button>
+                    </Button>
                   </Link>
           </h4>
           <FirebaseAuthProvider {...config} firebase={firebase}>
-          <button onClick={() => onSubmit()}>Sign in with Google</button>
+          <Button onClick={() => onSubmit()}>Sign in with Google</Button>
           </FirebaseAuthProvider>
         </div>
       </Container>
@@ -79,6 +79,27 @@ const Terms = styled.p`
   font-size: 10px;
   color: rgba(62, 144, 60, 0.8);
   font-weight: 300;
+`;
+
+const Button = styled.button`
+  width: 80%;
+  max-width: 200px;
+  min-width: 20px;
+  width: fit-content;
+  height: 25px;
+  border: none;
+  margin: 1rem 0;
+  box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  background-color: #ca7df9;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
 `;
 
 const Form = styled.form`
