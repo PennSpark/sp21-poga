@@ -1,8 +1,8 @@
 /* Sets the containers height and width */
 .base-timer {
-    position: relative;
-    height: 350px;
-    width: 350px;
+    position: center;
+    height: 100px;
+    width: 100px;
     transform: translateX(30px);
   }
   
@@ -21,8 +21,8 @@
     position: absolute;
     
     /* Size should match the parent container */
-    width: 350px;
-    height: 350px;
+    width: 100px;
+    height: 100px;
     
     /* Keep the label aligned to the top */
     top: 0;

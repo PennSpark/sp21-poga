@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import '../../style/Profile.css'
 import ProfileTabs from './ProfileTabs'
 import ProfileProgressBar from './ProfileProgressBar'
@@ -59,34 +59,42 @@ export default function Profile() {
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
   const [userDetails, setUserDetails] = useState(null)
+  
+
   if (user != null) {
     name = user.displayName;
     email = user.email;
     photoUrl = user.photoURL;
     emailVerified = user.emailVerified;
     uid = user.uid;
-    var db = firebase.firestore();
-    
-    db.collection('user').doc(uid).get()
-        .then((data) => {
-          setUserDetails(data.data());
-          setcurrentPoints(userDetails ? userDetails.score : 0);
-        })
   }
+  const innerFunction = useCallback(() => {
+    if (user !== null && userDetails === null) {
+      var db = firebase.firestore();
+      db.collection('user').doc(uid).get()
+          .then((data) => {
+            setUserDetails(data.data());
+            setcurrentPoints(data.data() ? data.data().score : 0);
+          })
+    }
+  });
 
   React.useEffect(() => {
+
+    
+    innerFunction()
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
 
         const diff = Math.random() * 10;
         return Math.min(oldProgress + diff, currentPoints);
       });
-    }, 150);
+    }, 100);
 
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [innerFunction]);
 
   const [button, setButton] = useState(true);
   if (user != null) {

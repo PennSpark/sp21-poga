@@ -4,6 +4,32 @@ import { Button } from '../../components/Button';
 import TF from './TF';
 import './ClassifyAll.css';
 
+import Grid from '@material-ui/core/Grid';
+import Lottie from 'lottie-react';
+import Evolution1 from '../../images/animations/evolution1.json'
+import Failure from '../../images/animations/failure.json'
+
+
+const style = {
+  height: 300,
+  width: 360,
+  margin:0
+};
+
+const plantAnimation = (success) => {
+  if (success) {
+      return <Lottie
+          animationData={Evolution1}
+          style={style}
+      />
+  } else {
+      return <Lottie
+          animationData={Failure}
+          style={style}
+      />
+  }
+};
+
 function ClassifyAll({ type, level }) {
   const [starting, Setstarting] = useState(false);
   const [modelloading, Setmodelloading] = useState(false);
@@ -54,8 +80,8 @@ function ClassifyAll({ type, level }) {
       );
     } else if (starting && !classifying && !completed) {
       return (
-        <div>
-          <span className='text-xl text-primary font-bold text-jost'>
+        <div class="clockStuff">
+          <span>
             Starting in
           </span>
           <Clock total={5} pause={() => false} onComplete={IntialCompleted} />
@@ -64,13 +90,9 @@ function ClassifyAll({ type, level }) {
     } else if (starting && classifying && !completed) {
       return (
 				<div className="clockStuff">
-          {/* <img
-            src="mountainpose.png"
-            alt="Mountain"
-                /> */}
-                    <Clock total={10} pause={pause} onComplete={Finished} />
+          <Clock total={10} pause={pause} onComplete={Finished} />
 					<span className="clockEncouragement">
-						{doingright ? "Doing Great" : "Oh No! You're making your plant buddy sad!"}
+						{doingright ? "Doing Great!" : <p>Oh No!<br/>You're making your plant buddy sad 😞</p>}
 					</span>
 				</div>
 			);
@@ -98,7 +120,7 @@ function ClassifyAll({ type, level }) {
   };
   return (
 		<div
-			className="flex flex-col w-full h-full bg-primary-light overflow-hidden overflow-y-hidden"
+			className="flex flex-col w-full h-full bg-primary-light overflow-hidden overflow-y-hidden classify"
 			style={{ minHeight: "91vh" }}
 		>
 			{modelloading && (
@@ -114,43 +136,39 @@ function ClassifyAll({ type, level }) {
 					</div>
 				</div>
 			)}
-			<div className=" w-full h-full lg:flex">
-				<div className="w-full  h-full lg:w-1/2 ">
-					<TF
-						Setmodelloading={Setmodelloading}
-						Setdoingright={Modelcheck}
-						Classifying={Classifying}
-                        whatdoing={whatdoing}
-                        asana={levels[0]}
-					/>
-				</div>
-				<div className="w-full lg:w-1/2 h-full relative  ">
-					<div className="instructionClock">
-						Perform {levels[0]}!
-					</div>
-					<div className="  flex justify-center items-center ">
-						<a
-							className="text-2xl font-jost text-secondary-dark font-bold uppercase mt-1 flex"
-							href={youtubeUrl[levelis - 1]}
-							target="_blank"
-							rel="noreferrer"
-						>
-							{/* <img
-								src="mountainpose.png"
-								alt="Mountain"
-							/> */}
-							{levels[levelis - 1]}
-						</a>
-					</div>
-					<div className="  flex justify-center items-center ">
+			 <div className=" w-full h-full lg:flex">
+        <Grid container spacing={10}>
+          <Grid item xs={4}>
+            <div class="instructionClock">
+              Perform {levels[0]}!
+            </div>
+            <img
+            src="tadasana.png"
+            alt="Mountain"
+            class="pose"
+                />
+          </Grid>
+          <Grid item xs={4}>
+            <TF
+              Setmodelloading={Setmodelloading}
+              Setdoingright={Modelcheck}
+              Classifying={Classifying}
+                          whatdoing={whatdoing}
+                          asana={levels[0]}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <div className="instructionClock"/>
+            {starting && !completed}
+                <Startbutton />
             
-					</div>
+            {doingright ? plantAnimation(true) : plantAnimation(false)}
+          </Grid>
 
-					{starting && !completed}
-					<div className="flex justify-center w-full">
-						<Startbutton />
-					</div>
-				</div>
+            
+
+        </Grid>
+				
 			</div>
 		</div>
 	);

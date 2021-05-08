@@ -25,10 +25,21 @@ function TF({
 	whatdoing,
     asana
 }) {
+	
+	var user = firebase.auth().currentUser;
+	var uid, db;
+	if (user != null) {
+		uid = user.uid;
+		db = firebase.firestore();
+	}
+
+	const sessionPoints = 10
+	
 	const webcamRef = useRef(null);
 	const canvasRef = useRef(null);
 	const poseNet = useRef(null);
 	const brain = useRef(null);
+
 
 	const options = {
 		inputs: 34,
@@ -49,7 +60,6 @@ function TF({
 			brain.current.load(modelInfo, () => {
 				console.log("pose classification ready!");
 			});
-            console.log(brain.current);
 
 			const videoWidth = webcamRef.current.video.videoWidth;
 			const videoHeight = webcamRef.current.video.videoHeight;
@@ -94,7 +104,17 @@ function TF({
 				if (whatdoing()) Setdoingright(false);
 			} else if (results[0].label === asana && results[0].confidence > 0.8) {
 				if (!whatdoing()) Setdoingright(true);
-				
+
+				//TODO: update score here? i did not test this so no idea if it works lol
+				if (user !== null) {
+					db.collection('user').doc(uid).get()
+          	.then((data) => {
+							var oldScore = data.data().score
+							db.collection("user").doc(uid).update({
+								score: oldScore + sessionPoints
+							});
+					})
+				}
 			} else {
 				if (whatdoing) Setdoingright(false);
 			}
