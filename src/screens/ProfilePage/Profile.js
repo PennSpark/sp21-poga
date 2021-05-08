@@ -86,7 +86,7 @@ export default function Profile() {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
 
-        const diff = Math.random() * 10;
+        const diff = Math.random() * 100;
         return Math.min(oldProgress + diff, currentPoints);
       });
     }, 100);
@@ -135,7 +135,7 @@ export default function Profile() {
                   <Animation />
                 </Grid>
                 <Grid item xs={9} id="profile_stats">
-                    <p>Earn {100 - currentPoints} more points to grow your plant to the next level!</p>
+                    <p>Earn {(Math.floor(currentPoints / 300) + 1) * 300 - currentPoints} more points to grow your plant to the next level!</p>
                     <ProfileProgressBar variant="determinate" value={progress} />
                 </Grid>
               </Grid>

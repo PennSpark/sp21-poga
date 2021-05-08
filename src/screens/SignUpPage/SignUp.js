@@ -54,7 +54,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
           <Input placeholder="Full Name" />
           <Input type="email" placeholder="Email" />
           <Input type="password" placeholder="Password" />
-          <Input type="password" placeholder="Confrim Password" />
+          <Input type="password" placeholder="Confirm Password" />
           <button>Sign Up</button>
         </Form>
         <div>

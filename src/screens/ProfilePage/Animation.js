@@ -10,7 +10,7 @@ const style = {
 };
 
 const plantAnimation = () => {
-    const score = 61;
+    const score = 20;
 
     if (score < 300) {
         return <Lottie
