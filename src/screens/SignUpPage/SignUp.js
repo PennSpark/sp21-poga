@@ -66,7 +66,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
                   </Link>
           </h4>
           <FirebaseAuthProvider {...config} firebase={firebase}>
-          <Button onClick={() => onSubmit()}>Sign in with Google</Button>
+          <Button2 onClick={() => onSubmit()}>Sign in with Google</Button2>
           </FirebaseAuthProvider>
         </div>
       </Container>
@@ -86,6 +86,26 @@ const Button = styled.button`
   max-width: 200px;
   min-width: 20px;
   width: fit-content;
+  height: 25px;
+  border: none;
+  margin: 1rem 0;
+  box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  background-color: #ca7df9;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+`;
+
+const Button2 = styled.button`
+  width: 80%;
+  max-width: 200px;
+  min-width: 20px;
   height: 25px;
   border: none;
   margin: 1rem 0;
