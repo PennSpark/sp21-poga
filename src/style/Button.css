@@ -23,7 +23,7 @@
     padding: 8px 20px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
-    transform: translateY(0px); /*This moves the button in the navbar up and down */
+    transform: translateY(10px); /*This moves the button in the navbar up and down */
   }
   
   .btn--medium {
