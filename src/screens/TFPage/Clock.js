@@ -2,6 +2,7 @@
 import { useEffect,memo } from "react";
 import { useState } from "react";
 import "./Clock.css";
+import React from 'react';
 
 const Clock = ({ total, pause, onComplete }) => {
 	const [time, Settime] = useState(total);

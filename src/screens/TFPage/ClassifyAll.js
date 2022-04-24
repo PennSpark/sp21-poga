@@ -3,6 +3,7 @@ import Clock from './Clock';
 import { Button } from '../../components/Button';
 import TF from './TF';
 import './ClassifyAll.css';
+import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Lottie from 'lottie-react';
